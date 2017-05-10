@@ -15,9 +15,12 @@ export default function feeds(state = initialState, action) {
         title: action.payload.feed.title,
         link: action.payload.feed.link
       }
-      const newItems = action.payload.items.map( item => {
-        return Object.assign(item, { feed_title: action.payload.feed.title})
-      })
+      const newItems = action.payload.items.map( item => (
+        Object.assign(
+          item,
+          { feed_title: action.payload.feed.title }
+        )
+      ))
       return {
         ...state,
         feeds: state.feeds.concat(newFeed),
@@ -25,12 +28,12 @@ export default function feeds(state = initialState, action) {
       }
     }
     case REMOVE_FEED: {
-      const newFeeds = state.feeds.filter( feed => {
-        return feed.title !== action.payload
-      })
-      const newItems = state.itemsList.filter( item => {
-        return item.feed_title !== action.payload
-      })
+      const newFeeds = state.feeds.filter( feed => (
+        feed.title !== action.payload
+      ))
+      const newItems = state.itemsList.filter( item => (
+        item.feed_title !== action.payload
+      ))
       return {
         ...state,
         feeds: newFeeds,
