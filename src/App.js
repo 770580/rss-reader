@@ -8,9 +8,9 @@ import './App.css';
 
 class App extends Component {
 
-  componentDidMount() {
-    this.props.fetchGetFeeds();
-  }
+  // componentDidMount() {
+  //   this.props.fetchGetFeeds();
+  // }
 
   render() {
     return (

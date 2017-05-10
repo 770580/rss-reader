@@ -1,52 +1,23 @@
-export const GET_FEEDS = 'GET_FEEDS';
-export const REMOVE_FEED = 'REMOVE_FEED';
-export const MAKE_ITEMS_LIST = 'MAKE_ITEMS_LIST';
+export const ADD_FEED = 'ADD_FEED';
 
-export function getFeeds(feeds) {
+export function addFeed(feed) {
   return {
-    type: GET_FEEDS,
-    payload: feeds
+    type: ADD_FEED,
+    payload: feed
   }
 }
 
-export function fetchGetFeeds() {
-  return dispatch => {
-    fetch( process.env.NODE_ENV !== 'production' ? 'http://localhost:3004/feeds' : 'https://demo1896123.mockable.io/clients')
-    .then(response => response.json())
-    .then(data => dispatch(getFeeds(data)))
-    .catch(ex => console.log('connection error', ex))
-  }
-}
-
-export function removeFeed(id) {
-  return {
-    type: REMOVE_FEED,
-    payload: id
-  }
-}
-
-export function fetchRemoveFeed(id) {
-  return dispatch => {
-    fetch( process.env.NODE_ENV !== 'production' ? `http://localhost:3004/feeds/${id}` : 'https://demo1896123.mockable.io/clients', {
-      method: 'DELETE'
-    })
-    .then(data => dispatch(removeFeed(id)))
-    .catch(ex => console.log('something went wrong', ex))
-  }
-}
-
-export function makeItemsList(items) {
-  return {
-    type: MAKE_ITEMS_LIST,
-    payload: items
-  }
-}
-
-export function getItems(url) {
+export function fetchAddFeed(url) {
   return dispatch => {
     fetch(`https://api.rss2json.com/v1/api.json?rss_url=${url}`)
     .then(response => response.json())
-    .then(data => dispatch(makeItemsList(data.items)))
+    .then(data => {
+      if (data.status !== 'error') {
+        dispatch(addFeed(data))
+      } else {
+        alert(data.message);
+      }
+    })
     .catch(ex => console.log('connection error', ex))
   }
 }

@@ -12,7 +12,7 @@ class LeftPanel extends Component {
 
   handleAddFeed(event) {
     event.preventDefault();
-    alert(this.feedInput.value.trim());
+    this.props.fetchAddFeed(this.feedInput.value.trim());
     this.feedInput.value = '';
   }
 
@@ -20,8 +20,8 @@ class LeftPanel extends Component {
     return (
       <div className='leftPanel'>
         <ul>
-          {this.props.feeds.map( feed => (
-            <li key={feed.id}>
+          {this.props.feeds.map( (feed, index) => (
+            <li key={index}>
               {feed.title}
               <span
                 onClick={this.handleRemoveFeed.bind(this, feed.id)}

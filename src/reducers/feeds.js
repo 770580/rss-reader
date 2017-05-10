@@ -1,7 +1,5 @@
 import { 
-  GET_FEEDS,
-  REMOVE_FEED,
-  MAKE_ITEMS_LIST
+  ADD_FEED
 } from '../actions/FeedsActions';
 
 const initialState = {
@@ -11,19 +9,19 @@ const initialState = {
 
 export default function feeds(state = initialState, action) {
   switch (action.type) {
-    case GET_FEEDS:
-      return { ...state, feeds: action.payload }
-    case REMOVE_FEED:
-      const newFeeds = state.feeds.filter( feed => {
-        return feed.id !== action.payload;
+    case ADD_FEED:
+      const newFeed = {
+        title: action.payload.feed.title,
+        link: action.payload.feed.link
+      }
+      const newItems = action.payload.items.map( item => {
+        return Object.assign(item, { feed_title: action.payload.feed.title})
       })
-      return { ...state, feeds: newFeeds}
-    case MAKE_ITEMS_LIST:
-      let newItemsList = state.itemsList.concat(action.payload);
-      newItemsList.sort( (a, b) => {
-        return new Date(a.pubDate) - new Date(b.pubDate);
-      })
-      return { ...state, itemsList: newItemsList }
+      return {
+        ...state,
+        feeds: state.feeds.concat(newFeed),
+        itemsList: state.itemsList.concat(newItems)
+      }
     default:
       return state;
   }

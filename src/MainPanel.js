@@ -7,11 +7,11 @@ import './MainPanel.css';
 
 class MainPanel extends Component {
 
-  componentDidMount() {
-    this.props.feeds.forEach( feed => {
-      this.props.getItems(feed.url)
-    })
-  }
+  // componentDidMount() {
+  //   this.props.feeds.forEach( feed => {
+  //     this.props.getItems(feed.url)
+  //   })
+  // }
 
   render() {
     return (
