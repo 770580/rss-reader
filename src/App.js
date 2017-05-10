@@ -12,16 +12,10 @@ class App extends Component {
     this.props.fetchGetFeeds();
   }
 
-  handleRemoveFeed(id) {
-    this.props.fetchRemoveFeed(id);
-  }
-
   render() {
     return (
       <div className="App">
-        <LeftPanel
-          handleRemoveFeed={this.handleRemoveFeed.bind(this)}
-        />
+        <LeftPanel />
         {this.props.feeds.length > 0 &&
           <MainPanel />
         }

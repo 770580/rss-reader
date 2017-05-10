@@ -1,7 +1,12 @@
-import { GET_FEEDS, REMOVE_FEED } from '../actions/FeedsActions';
+import { 
+  GET_FEEDS,
+  REMOVE_FEED,
+  MAKE_ITEMS_LIST
+} from '../actions/FeedsActions';
 
 const initialState = {
-  feeds: []
+  feeds: [],
+  itemsList: []
 }
 
 export default function feeds(state = initialState, action) {
@@ -13,6 +18,12 @@ export default function feeds(state = initialState, action) {
         return feed.id !== action.payload;
       })
       return { ...state, feeds: newFeeds}
+    case MAKE_ITEMS_LIST:
+      let newItemsList = state.itemsList.concat(action.payload);
+      newItemsList.sort( (a, b) => {
+        return new Date(a.pubDate) - new Date(b.pubDate);
+      })
+      return { ...state, itemsList: newItemsList }
     default:
       return state;
   }

@@ -1,24 +1,19 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as ItemsListActions from './actions/ItemsListActions';
+import * as FeedsActions from './actions/FeedsActions';
 
 import './MainPanel.css';
 
 class MainPanel extends Component {
 
   componentDidMount() {
-    console.log('1')
     this.props.feeds.forEach( feed => {
-      fetch(`https://api.rss2json.com/v1/api.json?rss_url=${feed.url}`)
-      .then(response => response.json())
-      .then(data => this.props.makeItemsList(data.items))
-      .catch(ex => console.log('connection error', ex))
+      this.props.getItems(feed.url)
     })
   }
 
   render() {
-    console.log(this.props.feeds)
     return (
       <div className='MainPanel'>
         <ul>
@@ -37,13 +32,13 @@ class MainPanel extends Component {
 function mapStateToProps(state) {
   return {
     feeds: state.feeds.feeds,
-    feedItems: state.itemsList.itemsList
+    feedItems: state.feeds.itemsList
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({
-    ...ItemsListActions
+    ...FeedsActions
   }, dispatch)
 }
 

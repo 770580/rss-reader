@@ -1,5 +1,6 @@
 export const GET_FEEDS = 'GET_FEEDS';
 export const REMOVE_FEED = 'REMOVE_FEED';
+export const MAKE_ITEMS_LIST = 'MAKE_ITEMS_LIST';
 
 export function getFeeds(feeds) {
   return {
@@ -31,5 +32,21 @@ export function fetchRemoveFeed(id) {
     })
     .then(data => dispatch(removeFeed(id)))
     .catch(ex => console.log('something went wrong', ex))
+  }
+}
+
+export function makeItemsList(items) {
+  return {
+    type: MAKE_ITEMS_LIST,
+    payload: items
+  }
+}
+
+export function getItems(url) {
+  return dispatch => {
+    fetch(`https://api.rss2json.com/v1/api.json?rss_url=${url}`)
+    .then(response => response.json())
+    .then(data => dispatch(makeItemsList(data.items)))
+    .catch(ex => console.log('connection error', ex))
   }
 }
