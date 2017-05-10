@@ -1,0 +1,10 @@
+{
+  "feeds": [
+    {
+      "id": 1,
+      "title": "NBC News Top Stories",
+      "url": "http://feeds.nbcnews.com/feeds/topstories",
+      "image": "http://media1.s-nbcnews.com/i/MSNBC/Components/Media/NBC-promo-graphics/nbc-news.png"
+    }
+  ]
+}
