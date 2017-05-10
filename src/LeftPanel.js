@@ -6,8 +6,8 @@ import './LeftPanel.css';
 
 class LeftPanel extends Component {
 
-  handleRemoveFeed(id) {
-    this.props.fetchRemoveFeed(id);
+  handleRemoveFeed(title) {
+    this.props.removeFeed(title);
   }
 
   handleAddFeed(event) {
@@ -24,7 +24,7 @@ class LeftPanel extends Component {
             <li key={index}>
               {feed.title}
               <span
-                onClick={this.handleRemoveFeed.bind(this, feed.id)}
+                onClick={this.handleRemoveFeed.bind(this, feed.title)}
               >
                 &nbsp;X
               </span>

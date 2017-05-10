@@ -1,5 +1,6 @@
 import { 
-  ADD_FEED
+  ADD_FEED,
+  REMOVE_FEED
 } from '../actions/FeedsActions';
 
 const initialState = {
@@ -9,7 +10,7 @@ const initialState = {
 
 export default function feeds(state = initialState, action) {
   switch (action.type) {
-    case ADD_FEED:
+    case ADD_FEED: {
       const newFeed = {
         title: action.payload.feed.title,
         link: action.payload.feed.link
@@ -22,6 +23,20 @@ export default function feeds(state = initialState, action) {
         feeds: state.feeds.concat(newFeed),
         itemsList: state.itemsList.concat(newItems)
       }
+    }
+    case REMOVE_FEED: {
+      const newFeeds = state.feeds.filter( feed => {
+        return feed.title !== action.payload
+      })
+      const newItems = state.itemsList.filter( item => {
+        return item.feed_title !== action.payload
+      })
+      return {
+        ...state,
+        feeds: newFeeds,
+        itemsList: newItems
+      }
+    }
     default:
       return state;
   }
