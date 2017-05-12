@@ -41,6 +41,9 @@ class LeftPanel extends Component {
             </li>
           ))}
         </ul>
+        Сортировка: <br />
+        <a onClick={this.props.sortItemsByTitle.bind(this)}>По названию</a> <br />
+        <a onClick={this.props.sortItemsByDate.bind(this)}>По дате</a>
       </div>
     );
   }

@@ -1,5 +1,7 @@
 export const ADD_FEED = 'ADD_FEED';
 export const REMOVE_FEED = 'REMOVE_FEED';
+export const SORT_ITEMS_BY_DATE = 'SORT_ITEMS_BY_DATE';
+export const SORT_ITEMS_BY_TITLE = 'SORT_ITEMS_BY_TITLE';
 
 export function addFeed(feed) {
   return {
@@ -27,5 +29,17 @@ export function removeFeed(title) {
   return {
     type: REMOVE_FEED,
     payload: title
+  }
+}
+
+export function sortItemsByDate() {
+  return {
+    type: SORT_ITEMS_BY_DATE
+  }
+}
+
+export function sortItemsByTitle() {
+  return {
+    type: SORT_ITEMS_BY_TITLE
   }
 }
