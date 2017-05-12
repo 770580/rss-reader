@@ -1,0 +1,26 @@
+.MainPanel__list {
+  display: table;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  table-layout: fixed;
+  width: 100%;
+  white-space: nowrap;
+}
+
+.MainPanel__item {
+  display: table-row;
+}
+
+.MainPanel__title {
+  display: table-cell;
+  padding-left: 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.MainPanel__date {
+  display: table-cell;
+  width: 60px;
+  text-align: right;
+}

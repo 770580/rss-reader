@@ -19,6 +19,16 @@ class LeftPanel extends Component {
   render() {
     return (
       <div className='leftPanel'>
+        <form
+          onSubmit={this.handleAddFeed.bind(this)}
+        >
+          <input
+            type='text'
+            ref={ input => { this.feedInput = input }}
+            defaultValue='http://feeds.gawker.com/lifehacker/full'
+          />
+          <button>Add</button>
+        </form>
         <ul>
           {this.props.feeds.map( (feed, index) => (
             <li key={index}>
@@ -31,15 +41,6 @@ class LeftPanel extends Component {
             </li>
           ))}
         </ul>
-        <form
-          onSubmit={this.handleAddFeed.bind(this)}
-        >
-          <input
-            type='text'
-            ref={ input => { this.feedInput = input }}
-          />
-          <button>Add</button>
-        </form>
       </div>
     );
   }

@@ -6,21 +6,22 @@ import * as FeedsActions from './actions/FeedsActions';
 import './MainPanel.css';
 
 class MainPanel extends Component {
-
-  // componentDidMount() {
-  //   this.props.feeds.forEach( feed => {
-  //     this.props.getItems(feed.url)
-  //   })
-  // }
+  formatDate(date) {
+    return new Date(date).toLocaleString('ru', { day: 'numeric', month: 'short' });
+  }
 
   render() {
     return (
       <div className='MainPanel'>
-        <ul>
+        <ul className='MainPanel__list'>
           {this.props.feedItems.map( (item, index ) => (
-            <li key={index}>
-              {/*{item.title}*/}
-              {item.pubDate}
+            <li className='MainPanel__item' key={index}>
+              <span className='MainPanel__title'>
+                {item.title}
+              </span>
+              <span className='MainPanel__date'>
+                {this.formatDate(item.pubDate)}
+              </span>
             </li>
           ))}
         </ul>
