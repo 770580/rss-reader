@@ -19,8 +19,8 @@ class MainPanel extends Component {
         <ul>
           {this.props.feedItems.map( (item, index ) => (
             <li key={index}>
-              {item.title}<br />
-              {item.pubDate}<br />
+              {/*{item.title}*/}
+              {item.pubDate}
             </li>
           ))}
         </ul>

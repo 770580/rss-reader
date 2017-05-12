@@ -15,16 +15,21 @@ export default function feeds(state = initialState, action) {
         title: action.payload.feed.title,
         link: action.payload.feed.link
       }
-      const newItems = action.payload.items.map( item => (
+      let newItems = action.payload.items.map( item => (
         Object.assign(
           item,
           { feed_title: action.payload.feed.title }
         )
       ))
+
+      newItems = state.itemsList.concat(newItems).sort( (a, b) => {
+        return new Date(a.pubDate) - new Date(b.pubDate);
+      })
+
       return {
         ...state,
         feeds: state.feeds.concat(newFeed),
-        itemsList: state.itemsList.concat(newItems)
+        itemsList: newItems
       }
     }
     case REMOVE_FEED: {
