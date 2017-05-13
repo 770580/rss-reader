@@ -18,32 +18,48 @@ class LeftPanel extends Component {
 
   render() {
     return (
-      <div className='leftPanel'>
+      <div className={this.props.leftPanelOpen
+        ? 'leftPanel leftPanel--open'
+        : 'leftPanel'}>
         <form
+          className='leftPanel__form'
           onSubmit={this.handleAddFeed.bind(this)}
         >
           <input
+            className='leftPanel__input'
             type='text'
             ref={ input => { this.feedInput = input }}
             defaultValue='http://feeds.gawker.com/lifehacker/full'
           />
-          <button>Add</button>
+          <button className='leftPanel__submit'>+</button>
         </form>
-        <ul>
+        <ul className='leftPanel__feedsList'>
           {this.props.feeds.map( (feed, index) => (
             <li key={index}>
               {feed.title}
               <span
+                className='leftPanel__remove'
                 onClick={this.handleRemoveFeed.bind(this, feed.title)}
               >
-                &nbsp;X
+                &nbsp;x
               </span>
             </li>
           ))}
         </ul>
         Сортировка: <br />
-        <a onClick={this.props.sortItemsByTitle.bind(this)}>По названию</a> <br />
-        <a onClick={this.props.sortItemsByDate.bind(this)}>По дате</a>
+        <a
+          className='leftPanel__sortTitle'
+          onClick={this.props.sortItemsByTitle.bind(this)}
+        >
+          По названию
+        </a>
+        <br />
+        <a
+          className='leftPanel__sortDate'
+          onClick={this.props.sortItemsByDate.bind(this)}
+        >
+          По дате
+        </a>
       </div>
     );
   }
@@ -52,6 +68,8 @@ class LeftPanel extends Component {
 function mapStateToProps(state) {
   return {
     feeds: state.feeds.feeds,
+    sortDateOrder: state.feeds.sortDateOrder,
+    sortTitleOrder: state.feeds.sortTitleOrder
   }
 }
 

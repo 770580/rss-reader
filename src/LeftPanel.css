@@ -1,0 +1,54 @@
+.leftPanel {
+  padding: 20px 15px 20px 15px;
+  background-color: #fff;
+}
+
+.leftPanel__form {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.leftPanel__input {
+  width: 150px;
+  margin-right: 8px;
+  color: inherit;
+  border: 1px solid #706d6c;
+  border-radius: 3px;
+}
+
+.leftPanel__submit {
+  font-size: 16px;
+  color: inherit;
+  background-color: #fff;
+  border: 1px solid #706d6c;
+  border-radius: 3px;
+}
+
+.leftPanel__feedsList {
+  margin: 0;
+  margin-bottom: 15px;
+  padding: 0;
+  list-style: none;
+}
+
+.leftPanel__sortTitle {
+  cursor: pointer;
+}
+
+.leftPanel__sortDate {
+  cursor: pointer;
+}
+
+.leftPanel__remove {
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .leftPanel {
+    display: none;
+  }
+
+  .leftPanel--open {
+    display: block;
+  }
+}
