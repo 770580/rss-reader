@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://770580.github.io/rss-reader/",
   "devDependencies": {
+    "gh-pages": "^1.0.0",
     "react-scripts": "0.9.5",
     "redux-logger": "^3.0.1"
   },
